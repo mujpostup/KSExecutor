@@ -12,9 +12,7 @@ import javafx.scene.layout.Region;
 import org.fxmisc.richtext.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -128,7 +126,7 @@ public class KSExecutorController {
 
         runButton.setOnMouseClicked(mouseEvent -> {
             ObservableList<String> styles = runButton.getStyleClass();
-            if("start-button".equals(styles.remove(styles.size() - 1))){
+            if("start-button".equals(styles.removeLast())){
                 isScriptRunning = true;
                 new Thread(() ->{
                     Platform.runLater(() -> {
@@ -153,13 +151,11 @@ public class KSExecutorController {
                         });
                         process.getOutputStream().flush();
                     } catch (InterruptedException | IOException e) {
-                        Platform.runLater(() -> {
-                            styledTextArea.append(e.getMessage(), "red");
-                        });
+                        Platform.runLater(() -> styledTextArea.append(e.getMessage(), "red"));
                     }finally{
                         isScriptRunning = false;
                         Platform.runLater(() -> {
-                            styles.remove(styles.size() - 1);
+                            styles.removeLast();
                             styles.add("start-button");
                             runButton.setGraphic(icon);
                         });
