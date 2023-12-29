@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import org.fxmisc.richtext.CodeArea?>
+<?import org.fxmisc.flowless.VirtualizedScrollPane?>
+<?import org.fxmisc.richtext.StyleClassedTextArea?>
+
+<BorderPane fx:controller="com.jetbrains.internship.ksexecutor.KSExecutorController"
+            xmlns:fx="http://javafx.com/fxml"
+            styleClass="root">
+    <top>
+        <HBox fx:id="hbox">
+            <Button fx:id="runButton"/>
+        </HBox>
+    </top>
+    <center>
+        <SplitPane orientation="VERTICAL" dividerPositions="1">
+            <VirtualizedScrollPane vbarPolicy="AS_NEEDED"  hbarPolicy="AS_NEEDED">
+                <content>
+                    <CodeArea fx:id="codeArea" lineHighlighterOn="true"/>
+                </content>
+            </VirtualizedScrollPane>
+            <TabPane minHeight="75">
+                <Tab closable="false" text="Output">
+                    <StyleClassedTextArea fx:id="styledTextArea"/>
+                </Tab>
+            </TabPane>
+        </SplitPane>
+    </center>
+    <bottom>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
+
+</BorderPane>
